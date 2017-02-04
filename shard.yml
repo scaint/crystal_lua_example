@@ -1,0 +1,13 @@
+name: crystal_lua_example
+version: 0.1.0
+
+authors:
+  - Eugene Sheverdin <me@scaint.name>
+
+targets:
+  crystal_lua_example:
+    main: src/crystal_lua_example.cr
+
+crystal: 0.20.5
+
+license: MIT
