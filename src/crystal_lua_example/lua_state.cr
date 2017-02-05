@@ -28,6 +28,10 @@ module CrystalLuaExample
       raise "Could not create a new Lua state" if @state.null?
     end
 
+    def initialize(exising_state : LibLua::LuaState)
+      @state = exising_state
+    end
+
     def tostring(idx : LibC::Int)
       ptr = LibLua.tolstring(@state, idx, out len)
       String.new(ptr, len)
@@ -59,6 +63,10 @@ module CrystalLuaExample
         "line",
         Pointer(LibC::Char).null
       )
+    end
+
+    def call(nargs : LibC::Int = 0, nresults : LibC::Int = 0)
+      LibLua.callk(@state, nargs, nresults, 0, nil)
     end
 
     def version

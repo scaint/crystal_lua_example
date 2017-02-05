@@ -30,6 +30,8 @@ describe CrystalLuaExample::LuaState do
     end
   end
 
+  pending "#call" do; end
+
   describe "#version" do
     it "returns Lua version number" do
       new_lua_state.version.should eq 503.0
