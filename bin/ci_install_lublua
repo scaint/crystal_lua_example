@@ -2,6 +2,7 @@
 
 git clone https://github.com/lua/lua.git
 cd lua
+git checkout v5-3-0
 make a
 sudo cp liblua.a /usr/lib/x86_64-linux-gnu/liblua5.3.a
 cd ..
