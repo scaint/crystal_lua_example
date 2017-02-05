@@ -1,4 +1,4 @@
-# crystal_lua_example
+# crystal_lua_example [![Build Status](https://travis-ci.org/scaint/crystal_lua_example.svg?branch=master)](https://travis-ci.org/scaint/crystal_lua_example)
 
 TODO: Write a description here
 
