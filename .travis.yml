@@ -1,5 +1,10 @@
 language: crystal
+sudo: required
+dist: trusty
 addons:
   apt:
     packages:
-      - liblua5.3-0
+      - libreadline-dev
+      - libncurses-dev
+install:
+  - bin/ci_install_lublua
