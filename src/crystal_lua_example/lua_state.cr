@@ -33,6 +33,23 @@ module CrystalLuaExample
       String.new(ptr, len)
     end
 
+    def getglobal(name : String)
+      LibLua.getglobal(@state, name)
+    end
+
+    def setglobal(name : String)
+      LibLua.setglobal(@state, name)
+    end
+
+    def pushcfunction(cfun : LibLua::Cfunction)
+      LibLua.pushcclosure(@state, cfun, 0)
+    end
+
+    def register(name : String, cfun : LibLua::Cfunction)
+      pushcfunction(cfun)
+      setglobal(name)
+    end
+
     def load_string(source : String)
       buffer = Buffer.new(source)
       LibLua.load(

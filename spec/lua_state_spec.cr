@@ -22,6 +22,14 @@ describe CrystalLuaExample::LuaState do
     end
   end
 
+  describe "#register" do
+    it "sets a global function" do
+      state = new_lua_state
+      state.register "nop", ->(state : LibLua::LuaState) { 0 }
+      state.getglobal("nop").should eq LibLua::TFUNCTION
+    end
+  end
+
   describe "#version" do
     it "returns Lua version number" do
       new_lua_state.version.should eq 503.0
