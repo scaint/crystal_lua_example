@@ -28,6 +28,11 @@ module CrystalLuaExample
       raise "Could not create a new Lua state" if @state.null?
     end
 
+    def tostring(idx : LibC::Int)
+      ptr = LibLua.tolstring(@state, idx, out len)
+      String.new(ptr, len)
+    end
+
     def load_string(source : String)
       buffer = Buffer.new(source)
       LibLua.load(
