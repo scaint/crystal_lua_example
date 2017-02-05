@@ -9,9 +9,34 @@ module CrystalLuaExample
       end
     end
 
+    alias Buffer = IO::Memory
+
+    BUFFER_READER = ->(state : LibLua::LuaState, data : Void*, size : LibC::Int*) do
+      buffer = data.as(Buffer*).value
+      str = buffer.gets
+      if str.nil?
+        size.value = 0
+        Pointer(LibC::Char).null
+      else
+        size.value = str.bytesize
+        str.to_unsafe
+      end
+    end
+
     def initialize
       @state = LibLua.newstate(ALLOC, Pointer(Void).null)
       raise "Could not create a new Lua state" if @state.null?
+    end
+
+    def load_string(source : String)
+      buffer = Buffer.new(source)
+      LibLua.load(
+        @state,
+        BUFFER_READER,
+        pointerof(buffer),
+        "line",
+        Pointer(LibC::Char).null
+      )
     end
 
     def version
