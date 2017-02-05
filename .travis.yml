@@ -1,10 +1,5 @@
 language: crystal
 sudo: required
 dist: trusty
-addons:
-  apt:
-    packages:
-      - libreadline-dev
-      - libncurses-dev
 install:
   - bin/ci_install_lublua
